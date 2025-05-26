@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Nghe ghi âm</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      text-align: center;
+      background-color: #f9f9f9;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    audio {
+      width: 100%;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Nghe ghi âm cuộc gọi</h2>
+  <audio id="player" controls></audio>
+  <p id="status">Đang tải ghi âm...</p>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const recordingUrl = urlParams.get('url');
+
+    const statusEl = document.getElementById('status');
+    const audioEl = document.getElementById('player');
+
+    if (recordingUrl && recordingUrl.startsWith('http')) {
+      audioEl.src = recordingUrl;
+      statusEl.textContent = 'Ghi âm đã sẵn sàng.';
+    } else {
+      statusEl.textContent = 'URL ghi âm không hợp lệ.';
+    }
+  </script>
+</body>
+</html>
